@@ -31,4 +31,20 @@ orgs.newOrg('technology.sealman', 'eclipse-sealman') {
   _repositories+:: [
     orgs.newRepo('.github')
   ],
+} + {
+  # Adding Repository for initial commit
+  _repositories+:: [
+    orgs.newRepo('starterpackage'){
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      description: "SEALMAN Starter Package",
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
+      web_commit_signoff_required: false,
+      workflows+: {
+        default_workflow_permissions: "write",
+      },
+    },
+  ],
 }
