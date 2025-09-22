@@ -48,3 +48,42 @@ orgs.newOrg('technology.sealman', 'eclipse-sealman') {
     },
   ],
 }
+ + {
+  _repositories+:: [
+    orgs.newRepo('code-playground') {
+      description: 'Playground repository for Welotec application (daemon + CLI). Eclipse-hosted; ECA + Signed-off-by required.',
+      homepage: '',
+      allow_merge_commit: false,
+      allow_rebase_merge: true,
+      allow_squash_merge: true,
+      delete_branch_on_merge: true,
+      has_issues: true,
+      has_projects: false,
+      has_wiki: false,
+      has_discussions: true,
+      is_template: false,
+
+      web_commit_signoff_required: true,
+      secret_scanning: "enabled",
+      secret_scanning_push_protection: "enabled",
+
+      workflows+: {
+        enabled: false
+      },
+
+      branch_protection_rules: [
+        {
+          pattern: "main",
+          allows_deletions: false,
+          allows_force_pushes: false,
+          blocks_creations: false,
+          requires_pull_request: true,
+          required_approving_review_count: 1,
+          requires_code_owner_reviews: true,
+          requires_linear_history: true,
+          is_admin_enforced: true,
+        },
+      ],
+    },
+  ],
+}
