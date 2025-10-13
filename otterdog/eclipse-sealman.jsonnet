@@ -86,4 +86,27 @@ orgs.newOrg('technology.sealman', 'eclipse-sealman') {
       ],
     },
   ],
+} + {
+  _repositories+:: [
+    orgs.newRepo('sealman'){
+      description: "SEALMAN",
+
+      has_discussions: false,
+      has_issues: true,
+      has_projects: false,
+      has_wiki: false,
+
+      default_branch: "main",
+
+      allow_rebase_merge: false,
+      allow_merge_commit: true,
+
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
+
+      dependabot_alerts_enabled: false,
+      dependabot_security_updates_enabled: false,
+    },
+  ],
 }
+
