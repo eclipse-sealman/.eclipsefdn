@@ -88,8 +88,8 @@ orgs.newOrg('technology.sealman', 'eclipse-sealman') {
   ],
 } + {
   _repositories+:: [
-    orgs.newRepo('sealman'){
-      description: "SEALMAN",
+    orgs.newRepo('sealman-ems'){
+      description: "SEALMAN Element Management System (EMS)",
 
       has_discussions: false,
       has_issues: true,
