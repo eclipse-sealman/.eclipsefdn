@@ -76,6 +76,9 @@ orgs.newOrg('technology.sealman', 'eclipse-sealman') {
           pattern: "main",
           allows_deletions: false,
           allows_force_pushes: false,
+          bypass_force_push_allowances: [
+            "@gk-welotec",
+          ],
           blocks_creations: false,
           requires_pull_request: true,
           required_approving_review_count: 1,
