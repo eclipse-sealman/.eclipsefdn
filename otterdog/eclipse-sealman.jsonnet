@@ -43,6 +43,8 @@ orgs.newOrg('technology.sealman', 'eclipse-sealman') {
     orgs.newRepo('sealman-ems'){
       description: "SEALMAN Element Management System (EMS)",
 
+      archived: true,
+      
       has_discussions: false,
       has_issues: true,
       has_projects: false,
