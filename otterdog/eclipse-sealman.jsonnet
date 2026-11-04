@@ -48,7 +48,7 @@ orgs.newOrg('technology.sealman', 'eclipse-sealman') {
       has_projects: false,
       has_wiki: false,
 
-      default_branch: "main",
+      default_branch: "release/0.x",
 
       allow_rebase_merge: false,
       allow_merge_commit: true,
