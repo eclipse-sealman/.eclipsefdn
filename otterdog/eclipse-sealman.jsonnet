@@ -13,22 +13,122 @@ orgs.newOrg('technology.sealman', 'eclipse-sealman') {
     },
   },
   _repositories+:: [
-    orgs.newRepo('website') {
+    orgs.newRepo('.github') {
+    },
+    orgs.newRepo('sealman-edge-config-api') {
+      description: "Sealman EdgeConfig-API",
+      has_discussions: true,
+      has_projects: false,
+      has_wiki: false,
+      homepage: "",
+      branch_protection_rules: [
+        orgs.newBranchProtectionRule('main') {
+          is_admin_enforced: true,
+          required_approving_review_count: 1,
+          requires_code_owner_reviews: true,
+          requires_linear_history: true,
+          requires_status_checks: false,
+          requires_strict_status_checks: true,
+        },
+      ],
+    },
+    orgs.newRepo('sealman-edge-config-app') {
+      description: "Sealman EdgeConfig-APP",
+      has_discussions: true,
+      has_projects: false,
+      has_wiki: false,
+      homepage: "",
+      branch_protection_rules: [
+        orgs.newBranchProtectionRule('main') {
+          is_admin_enforced: true,
+          required_approving_review_count: 1,
+          requires_code_owner_reviews: true,
+          requires_linear_history: true,
+          requires_status_checks: false,
+          requires_strict_status_checks: true,
+        },
+      ],
+    },
+    orgs.newRepo('sealman-ems') {
       allow_merge_commit: true,
-      allow_update_branch: false,
-      delete_branch_on_merge: false,
-      description: "SEALMAN project website",
+      allow_rebase_merge: false,
+      default_branch: "release/0.x",
+      dependabot_alerts_enabled: false,
+      description: "SEALMAN Element Management System (EMS)",
+      has_projects: false,
+      has_wiki: false,
       secret_scanning: "disabled",
       secret_scanning_push_protection: "disabled",
-      web_commit_signoff_required: false,
-      workflows+: {
-        default_workflow_permissions: "write",
-      },
+      secrets: [
+        orgs.newRepoSecret('DOCKER_HUB_RENOVATE_TOKEN') {
+          value: "********",
+        },
+        orgs.newRepoSecret('DOCKER_HUB_USERNAME') {
+          value: "********",
+        },
+        orgs.newRepoSecret('RENOVATE_TOKEN') {
+          value: "pass:bots/technology.sealman/github.com/renovate-token",
+        },
+      ],
     },
-  # snippet added due to 'https://github.com/EclipseFdn/otterdog-configs/blob/main/blueprints/add-dot-github-repo.yml'
-    orgs.newRepo('.github') {},
-  # Adding Repository for initial commit
-    orgs.newRepo('starterpackage'){
+    orgs.newRepo('sealman-iiot-platform') {
+      description: "Sealman IIOT Platform",
+      has_discussions: true,
+      has_projects: false,
+      has_wiki: false,
+      homepage: "",
+      branch_protection_rules: [
+        orgs.newBranchProtectionRule('main') {
+          is_admin_enforced: true,
+          required_approving_review_count: 1,
+          requires_code_owner_reviews: true,
+          requires_linear_history: true,
+          requires_status_checks: false,
+          requires_strict_status_checks: true,
+        },
+      ],
+    },
+    orgs.newRepo('sealman-os-base') {
+      description: "Sealman Operating System base",
+      has_discussions: true,
+      has_projects: false,
+      has_wiki: false,
+      homepage: "",
+      workflows+: {
+        enabled: false,
+      },
+      branch_protection_rules: [
+        orgs.newBranchProtectionRule('main') {
+          is_admin_enforced: true,
+          required_approving_review_count: 1,
+          requires_code_owner_reviews: true,
+          requires_linear_history: true,
+          requires_status_checks: false,
+          requires_strict_status_checks: true,
+        },
+      ],
+    },
+    orgs.newRepo('sealman-os-conman') {
+      description: "Sealman Operating System configuration Management soulution",
+      has_discussions: true,
+      has_projects: false,
+      has_wiki: false,
+      homepage: "",
+      workflows+: {
+        enabled: false,
+      },
+      branch_protection_rules: [
+        orgs.newBranchProtectionRule('main') {
+          is_admin_enforced: true,
+          required_approving_review_count: 1,
+          requires_code_owner_reviews: true,
+          requires_linear_history: true,
+          requires_status_checks: false,
+          requires_strict_status_checks: true,
+        },
+      ],
+    },
+    orgs.newRepo('starterpackage') {
       allow_merge_commit: true,
       allow_update_branch: false,
       delete_branch_on_merge: false,
@@ -40,161 +140,17 @@ orgs.newOrg('technology.sealman', 'eclipse-sealman') {
         default_workflow_permissions: "write",
       },
     },
-    orgs.newRepo('sealman-ems'){
-      description: "SEALMAN Element Management System (EMS)",
-
-      has_discussions: false,
-      has_issues: true,
-      has_projects: false,
-      has_wiki: false,
-
-      default_branch: "release/0.x",
-
-      allow_rebase_merge: false,
+    orgs.newRepo('website') {
       allow_merge_commit: true,
-
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      description: "SEALMAN project website",
       secret_scanning: "disabled",
       secret_scanning_push_protection: "disabled",
-
-      dependabot_alerts_enabled: false,
-      dependabot_security_updates_enabled: false,
-    },
-    orgs.newRepo('sealman-os-base') {
-      description: 'Sealman Operating System base',
-      homepage: '',
-      allow_merge_commit: false,
-      allow_rebase_merge: true,
-      allow_squash_merge: true,
-      delete_branch_on_merge: true,
-      has_issues: true,
-      has_projects: false,
-      has_wiki: false,
-      has_discussions: true,
-
-      web_commit_signoff_required: true,
-      secret_scanning: "enabled",
-      secret_scanning_push_protection: "enabled",
-
+      web_commit_signoff_required: false,
       workflows+: {
-        enabled: false
+        default_workflow_permissions: "write",
       },
-
-      branch_protection_rules: [
-        {
-          pattern: "main",
-          allows_deletions: false,
-          allows_force_pushes: false,
-          blocks_creations: false,
-          requires_pull_request: true,
-          required_approving_review_count: 1,
-          requires_code_owner_reviews: true,
-          requires_linear_history: true,
-          is_admin_enforced: true,
-        },
-      ],
-    },
-    orgs.newRepo('sealman-os-conman') {
-      description: 'Sealman Operating System configuration Management soulution',
-      homepage: '',
-      allow_merge_commit: false,
-      allow_rebase_merge: true,
-      allow_squash_merge: true,
-      delete_branch_on_merge: true,
-      has_issues: true,
-      has_projects: false,
-      has_wiki: false,
-      has_discussions: true,
-
-      web_commit_signoff_required: true,
-      secret_scanning: "enabled",
-      secret_scanning_push_protection: "enabled",
-
-      workflows+: {
-        enabled: false
-      },
-
-      branch_protection_rules: [
-        {
-          pattern: "main",
-          allows_deletions: false,
-          allows_force_pushes: false,
-          blocks_creations: false,
-          requires_pull_request: true,
-          required_approving_review_count: 1,
-          requires_code_owner_reviews: true,
-          requires_linear_history: true,
-          is_admin_enforced: true,
-        },
-      ],
-    },
-    orgs.newRepo('sealman-edge-config-api') {
-      description: 'Sealman EdgeConfig-API',
-      homepage: '',
-
-      has_issues: true,
-      has_projects: false,
-      has_wiki: false,
-      has_discussions: true,
-
-      branch_protection_rules: [
-        {
-          pattern: "main",
-          allows_deletions: false,
-          allows_force_pushes: false,
-          blocks_creations: false,
-          requires_pull_request: true,
-          required_approving_review_count: 1,
-          requires_code_owner_reviews: true,
-          requires_linear_history: true,
-          is_admin_enforced: true,
-        },
-      ],
-    },
-    orgs.newRepo('sealman-edge-config-app') {
-      description: 'Sealman EdgeConfig-APP',
-      homepage: '',
-
-      has_issues: true,
-      has_projects: false,
-      has_wiki: false,
-      has_discussions: true,
-
-      branch_protection_rules: [
-        {
-          pattern: "main",
-          allows_deletions: false,
-          allows_force_pushes: false,
-          blocks_creations: false,
-          requires_pull_request: true,
-          required_approving_review_count: 1,
-          requires_code_owner_reviews: true,
-          requires_linear_history: true,
-          is_admin_enforced: true,
-        },
-      ],
-    },
-    orgs.newRepo('sealman-iiot-platform') {
-      description: 'Sealman IIOT Platform',
-      homepage: '',
-
-      has_issues: true,
-      has_projects: false,
-      has_wiki: false,
-      has_discussions: true,
-
-      branch_protection_rules: [
-        {
-          pattern: "main",
-          allows_deletions: false,
-          allows_force_pushes: false,
-          blocks_creations: false,
-          requires_pull_request: true,
-          required_approving_review_count: 1,
-          requires_code_owner_reviews: true,
-          requires_linear_history: true,
-          is_admin_enforced: true,
-        },
-      ],
     },
   ],
 }
